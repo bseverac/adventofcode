@@ -33,7 +33,7 @@ def resolve_2(arr, target)
 end
 
 
-class Day8Test < Test::Unit::TestCase
+class Day9Test < Test::Unit::TestCase
   def data(name)
     File.read(name).split("\n").map(&:to_i)
   end
