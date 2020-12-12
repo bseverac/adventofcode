@@ -22,6 +22,7 @@ def next_step(tab, params)
   tab.each_with_index do |row, j|
     row.each_with_index do |state, i|
       new_step[j][i] = state
+      next if state == '.'
       occupied = send("#{params[:method]}", i, j, tab).count {|e| e == '#'}
       new_step[j][i] = '#' if state == 'L' && occupied == 0
       new_step[j][i] = 'L' if state == '#' && occupied >= params[:max]
