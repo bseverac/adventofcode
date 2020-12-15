@@ -7,7 +7,7 @@ def extract_data(name)
   File.read(name).split("\n")
 end
 
-class Day12
+class Day14
   def initialize
     @mask = ''
     @memory = {}
@@ -43,9 +43,9 @@ class Day12
 end
 
 
-class Day12Test < Test::Unit::TestCase
+class Day14Test < Test::Unit::TestCase
   def test_star_1
-    d = Day12.new
+    d = Day14.new
     assert_equal(
       73,
       d.exec_mask(
@@ -57,28 +57,28 @@ class Day12Test < Test::Unit::TestCase
 
   def test_star_1_test
     data = extract_data('data_test.txt')
-    d = Day12.new
+    d = Day14.new
     data.each { |line| d.play(line, "*") }
     assert_equal 165, d.sum
   end
 
   def test_star_1
     data = extract_data('data.txt')
-    d = Day12.new
+    d = Day14.new
     data.each { |line| d.play(line, "*") }
     assert_equal 4297467072083, d.sum
   end
 
   def test_star_2
     data = extract_data('data_test2.txt')
-    d = Day12.new
+    d = Day14.new
     data.each { |line| d.play(line, "**") }
     assert_equal 208, d.sum
   end
 
   def test_star_2_final
     data = extract_data('data.txt')
-    d = Day12.new
+    d = Day14.new
     data.each { |line| d.play(line, "**") }
     assert_equal 5030603328768, d.sum
   end

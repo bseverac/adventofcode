@@ -33,7 +33,7 @@ def find_pair_match(result, b, offset)
   { first: time, period: a * b }
 end
 
-class Day12Test < Test::Unit::TestCase
+class Day13Test < Test::Unit::TestCase
   def test_star_1
     data = extract_data('data_test.txt')
     assert_equal 295, resolve_1(data)
