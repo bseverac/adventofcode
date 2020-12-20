@@ -10,7 +10,7 @@ SINGLE_OP  = /\(([\d +\*])*\)/ # extract single parenthesis expression ex: (2 + 
 PARENTH    = /[\(\)]+/
 
 def calc(str, prio)
-  str.sub!(SINGLE_OP) { |a| calc(a.gsub(PARENTH,''), prio) } while str.include?('(')
+  str.sub!(SINGLE_OP) { |a| calc(a.gsub(PARENTH, ''), prio) } while str.include?('(')
   prio.each { |r| str.sub!(r) { |a| eval(a) } while str.match(r) }
   str.to_i
 end
