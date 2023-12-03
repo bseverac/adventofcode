@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 arr = File.readlines('data.txt')
 
-row = Array.new((arr.first.length - 1) , 0)
+row = Array.new((arr.first.length - 1), 0)
 
 arr.each do |line|
   puts [row, line.strip.each_char.map(&:to_i)].inspect
