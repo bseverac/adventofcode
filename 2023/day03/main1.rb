@@ -22,75 +22,48 @@ def neighbours(x, y, arr)
   SQUARE.map { |k, l| neighbour(x + k, y + l, arr) }.compact
 end
 
-# stars 1
-class Stars1
+# main
+class Main
+  attr_reader :stars1
+
   def initialize(arr)
     @arr = arr
     @current_str = ''
     @neighbours = []
-    @result = 0
-  end
-
-  def call
-    @arr.each_with_index do |row, j|
-      row.each_char.with_index do |state, i|
-        update_current(state, i, j)
-        check_current(row, state, i, j)
-      end
-    end
-    @result
-  end
-
-  def update_current(state, i, j)
-    return unless state[/\d/]
-
-    @current_str += state
-    @neighbours += neighbours(i, j, @arr)
-  end
-
-  def check_current(row, state, i, _j)
-    return unless @current_str.length.positive? && (row[i + 1].nil? || !state[/\d/])
-
-    @result += @current_str.to_i if @neighbours.any? { |v| v[:value][/[^\d.]/] }
-    @current_str = ''
-    @neighbours = []
-  end
-end
-
-# stars 2
-class Stars2
-  def initialize(arr)
-    @arr = arr
-    @current_str = ''
-    @neighbours = []
+    @stars1 = 0
     @gears = {}
   end
 
   def call
     loop
-    @gears.filter { |_, v| v.length == 2 }.map { |_, v| v.reduce(&:*) }.sum
+    self
   end
 
   def loop
     @arr.each_with_index do |row, j|
       row.each_char.with_index do |state, i|
-        update_current(state, i, j)
-        check_current(row, state, i, j)
+        update(state, i, j)
+        checks(row, state, i, j)
       end
     end
   end
 
-  def update_current(state, i, j)
+  def stars2
+    @gears.filter { |_, v| v.length == 2 }.map { |_, v| v.reduce(&:*) }.sum
+  end
+
+  def update(state, i, j)
     return unless state[/\d/]
 
     @current_str += state
     @neighbours += neighbours(i, j, @arr)
   end
 
-  def check_current(row, state, i, _j)
+  def checks(row, state, i, _j)
     return unless @current_str.length.positive? && (row[i + 1].nil? || !state[/\d/])
 
     update_gears
+    @stars1 += @current_str.to_i if @neighbours.any? { |v| v[:value][/[^\d.]/] }
     @current_str = ''
     @neighbours = []
   end
@@ -104,5 +77,5 @@ class Stars2
   end
 end
 
-puts Stars1.new(arr1).call
-puts Stars2.new(arr1).call
+puts Main.new(arr1).call.stars1
+puts Main.new(arr1).call.stars2
