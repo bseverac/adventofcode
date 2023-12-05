@@ -20,7 +20,7 @@ arr.each do |line|
   aim += x if cmd == 'down'
   aim -= x if cmd == 'up'
   if cmd == 'forward'
-    position += x 
+    position += x
     depth += x * aim
   end
 end

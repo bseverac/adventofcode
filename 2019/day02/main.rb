@@ -56,9 +56,7 @@ puts '============SOLUTION1=============='
 end
 puts '==================================='
 
-
 ## Tests
-
 class Day2 < Test::Unit::TestCase
   def test_plus
     assert_equal [2,0,0,0,99], play_step([1,0,0,0,99])
